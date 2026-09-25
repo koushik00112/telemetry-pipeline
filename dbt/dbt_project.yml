@@ -1,0 +1,24 @@
+name: telemetry
+version: "1.0.0"
+config-version: 2
+profile: telemetry
+
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target"]
+
+vars:
+  # Absolute path to the lake, passed in by `pipeline dbt` (see pipeline/dbt_runner.py).
+  lake: "../lake"
+  # Readings per device, metric and hour that count as 100% complete.
+  expected_per_hour: 60
+
+models:
+  telemetry:
+    staging:
+      +materialized: view
+    marts:
+      # Full rebuild from all curated partitions: simple and idempotent. See ADR 0002 for
+      # when this should become incremental.
+      +materialized: table

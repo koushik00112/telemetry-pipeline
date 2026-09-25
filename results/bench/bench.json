@@ -1,0 +1,91 @@
+{
+  "measured_at": "2026-09-25T10:14:36+00:00",
+  "machine": {
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+    "processor": "arm",
+    "cpus": 8,
+    "memory_gb": 17.2,
+    "spark_driver_memory": "4g"
+  },
+  "versions": {
+    "python": "3.13.5",
+    "duckdb": "1.5.5",
+    "pyarrow": "25.0.1",
+    "pyspark": "3.5.9"
+  },
+  "data": "SYNTHETIC (pipeline.generate), one UTC day per scale",
+  "rows": [
+    {
+      "scale": 1,
+      "engine": "duckdb",
+      "raw_rows": 429576,
+      "raw_mb": 4.7,
+      "curated_rows": 7170,
+      "generate_s": 0.09,
+      "raw_quality_s": 0.1,
+      "transform_s": 0.07,
+      "transform_cold_s": null,
+      "readings_per_s": 6516424
+    },
+    {
+      "scale": 1,
+      "engine": "spark",
+      "raw_rows": 429576,
+      "raw_mb": 4.7,
+      "curated_rows": 7170,
+      "generate_s": 0.09,
+      "raw_quality_s": 0.1,
+      "transform_s": 1.94,
+      "transform_cold_s": 7.93,
+      "readings_per_s": 221780
+    },
+    {
+      "scale": 10,
+      "engine": "duckdb",
+      "raw_rows": 4310041,
+      "raw_mb": 43.8,
+      "curated_rows": 71892,
+      "generate_s": 0.62,
+      "raw_quality_s": 0.44,
+      "transform_s": 0.62,
+      "transform_cold_s": null,
+      "readings_per_s": 7006813
+    },
+    {
+      "scale": 10,
+      "engine": "spark",
+      "raw_rows": 4310041,
+      "raw_mb": 43.8,
+      "curated_rows": 71892,
+      "generate_s": 0.62,
+      "raw_quality_s": 0.44,
+      "transform_s": 6.22,
+      "transform_cold_s": 7.56,
+      "readings_per_s": 693429
+    },
+    {
+      "scale": 100,
+      "engine": "duckdb",
+      "raw_rows": 43083528,
+      "raw_mb": 437.8,
+      "curated_rows": 718788,
+      "generate_s": 5.37,
+      "raw_quality_s": 6.73,
+      "transform_s": 11.61,
+      "transform_cold_s": null,
+      "readings_per_s": 3709532
+    },
+    {
+      "scale": 100,
+      "engine": "spark",
+      "raw_rows": 43083528,
+      "raw_mb": 437.8,
+      "curated_rows": 718788,
+      "generate_s": 5.37,
+      "raw_quality_s": 6.73,
+      "transform_s": 56.79,
+      "transform_cold_s": 63.9,
+      "readings_per_s": 758628
+    }
+  ]
+}

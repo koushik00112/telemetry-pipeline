@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: dim_devices
+    columns:
+      - name: device_id
+        tests: [unique, not_null]
+  - name: fct_device_metric_daily
+    tests:
+      - unique_combination:
+          columns: ["date", "device_id", "metric"]
+    columns:
+      - name: device_id
+        tests:
+          - relationships:
+              to: ref('dim_devices')
+              field: device_id
+      - name: completeness
+        tests: [not_null]
+  - name: fleet_daily
+    columns:
+      - name: date
+        tests: [unique, not_null]
+      - name: devices_reporting
+        tests: [not_null]

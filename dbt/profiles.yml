@@ -1,0 +1,9 @@
+telemetry:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('WAREHOUSE_PATH', 'warehouse/telemetry.duckdb') }}"
+      threads: 4
+      settings:
+        TimeZone: UTC

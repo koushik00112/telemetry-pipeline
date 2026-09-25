@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_hourly
+    description: Hourly aggregates from the curated lake layer, one row per hour, device and metric.
+    columns:
+      - name: hour
+        tests: [not_null]
+      - name: device_id
+        tests: [not_null]
+      - name: metric
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["temperature_c", "humidity_pct", "vibration_rms"]
+              config:
+                severity: warn
+      - name: n_readings
+        tests: [not_null]
+    tests:
+      - unique_combination:
+          columns: ["hour", "device_id", "metric"]
