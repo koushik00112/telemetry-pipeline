@@ -51,6 +51,7 @@ jobs:
       LAKE_ROOT: /tmp/run/lake
       WAREHOUSE_PATH: /tmp/run/warehouse/t.duckdb
       REPORTS_ROOT: /tmp/run/reports
+      DBT_PROJECT_DIR: ${{ github.workspace }}/dbt
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

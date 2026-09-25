@@ -100,3 +100,18 @@ def test_bench_records_context(settings, tmp_path):
     assert "SYNTHETIC" in result["data"]
     md = (tmp_path / "bench" / "bench.md").read_text()
     assert "not a cluster benchmark" in md
+
+
+def test_missing_dbt_project_is_a_clear_error(settings, tmp_path):
+    s = settings.__class__(**{**settings.__dict__, "dbt_project": tmp_path / "nowhere"})
+    with pytest.raises(FileNotFoundError, match="DBT_PROJECT_DIR"):
+        dbt_runner.build(s)
+
+
+def test_default_dbt_project_prefers_env(monkeypatch, tmp_path):
+    from pipeline.config import _default_dbt_project
+
+    monkeypatch.setenv("DBT_PROJECT_DIR", str(tmp_path))
+    assert _default_dbt_project() == tmp_path
+    monkeypatch.delenv("DBT_PROJECT_DIR")
+    assert (_default_dbt_project() / "dbt_project.yml").exists()  # editable install: repo dbt/
