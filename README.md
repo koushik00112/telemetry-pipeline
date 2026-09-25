@@ -1,5 +1,7 @@
 # Telemetry Pipeline
 
+[![CI](https://github.com/koushik00112/telemetry-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/koushik00112/telemetry-pipeline/actions/workflows/ci.yml)
+
 A daily batch pipeline for device telemetry. It lands raw readings as partitioned Parquet,
 aggregates them hourly (DuckDB or PySpark, same SQL), checks data quality at every layer,
 models the results with dbt, and runs on Airflow. Reruns and backfills are idempotent, and
